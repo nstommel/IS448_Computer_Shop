@@ -39,7 +39,8 @@
         <div class="container-fluid float-left" style="margin-top: 75px;">
             <h3>TODO: Add Content Here</h3>
         </div>
-        <script>            
+        <script>
+            //Git command-line test
             $(document).ready(function(){                                                
                 updateCartIndicator();
             });            
