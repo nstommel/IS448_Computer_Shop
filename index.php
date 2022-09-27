@@ -40,7 +40,7 @@
             <h3>TODO: Add Content Here</h3>
         </div>
         <script>
-            //Git command-line test
+            // Update cart indicator when document has fully loaded.
             $(document).ready(function(){                                                
                 updateCartIndicator();
             });            
