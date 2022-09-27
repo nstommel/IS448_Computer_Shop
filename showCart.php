@@ -10,7 +10,6 @@ if (isset($_SESSION["shoppingCart"])) {
     foreach ($_SESSION["shoppingCart"] as $sku => $value) {
         array_push($SKUVarArray, ":sku" . $sku);  
     }
-    //var_dump($SKUArray);
 
     // Use implode to join sku binding names with commas within query string.
     $queryStr = "SELECT * FROM items WHERE sku IN (" . implode(", " , $SKUVarArray) . ")";
