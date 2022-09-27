@@ -12,10 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="computerShop.js"></script>
-        <style>
-            .container-fluid {
-                margin-top: 75px;
-            }
+        <style>            
         </style>
     </head>
     <body>
@@ -42,7 +39,7 @@
                 <a class="btn btn-light ml-auto mr-2" href="cart.php">Cart (<span id="numCartItems"></span>)</a>
             </div>
         </nav>
-        <div class="container-fluid float-left">
+        <div class="container-fluid float-left" style="margin-top: 75px">
             <div id="cart"></div>
         </div>
         <script>                       

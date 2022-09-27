@@ -9,20 +9,11 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="computerShop.js"></script>
-        <style>
-            .row {
-                display: flex;
-                flex-wrap: wrap;
-                padding: 10px;
-            }
-            .row > div[class*='col-'] {
-                display: flex;
-                padding: 10px;
-            }
+        <style>            
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand font-weight-bold" href="">Quality Computers</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,7 +36,7 @@
                 <a class="btn btn-light ml-auto mr-2" href="cart.php">Cart (<span id="numCartItems"></span>)</a>
             </div>
         </nav>
-        <div class="container-fluid float-left">
+        <div class="container-fluid float-left" style="margin-top: 75px;">
             <h3>TODO: Add Content Here</h3>
         </div>
         <script>            
