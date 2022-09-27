@@ -55,7 +55,7 @@ if (isset($_SESSION["shoppingCart"])) {
                     '<td style="vertical-align: middle;"><input class="form-control" type="number" min="1" step="1" name="quantity[' . $row['sku'] . ']" size="5" value="' . $_SESSION['shoppingCart'][$row['sku']] . '" required /></td>' .
                     '<td style="vertical-align: middle;">$' . number_format($row['cost'], 2, ".", ",")  . '</td>' .
                     '<td style="vertical-align: middle;">$' . number_format($_SESSION['shoppingCart'][$row['sku']] * $row['cost'], 2, ".", ",") . '</td>' .
-                    '<td style="vertical-align: middle;"><input type="button" class="btn btn-secondary" value="Remove" onclick="removeItem(' . $row['sku'] . ')" /></td>' .
+                    '<td style="vertical-align: middle;"><input type="button" class="removeButton btn btn-secondary" value="Remove" onclick="removeItem(' . $row['sku'] . ')" /></td>' .
                 '</tr>';
     }         
     echo        '<tr>' . 
@@ -63,8 +63,8 @@ if (isset($_SESSION["shoppingCart"])) {
                 '</tr>' .
             '</table>' .
             '<input type="submit" class="btn btn-primary" id="update" value="Update Cart" /> ' .
-            '<input type="button" class="btn btn-primary" value="Clear Cart" onclick="clearCart()" /> ' .
-            '<input type="button" class="btn btn-success" value="Place Order" onclick="placeOrder()" />' .
+            '<input type="button" class="btn btn-danger" id="clear" value="Clear Cart" onclick="clearCart()" /> ' .
+            '<input type="button" class="btn btn-success" id="place" value="Place Order" onclick="placeOrder()" />' .
         '</form>';    
     $db->close();
 } else {

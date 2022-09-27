@@ -1,3 +1,14 @@
+<?php
+    // The following code prevents page caching, so when using the back button
+    // to go back to the items page, the cart indicator isn't displayed incorrectly
+    // Note: Doesn't work on Firefox for some reason, pages are still cached.
+    header("Content-Type: text/html");
+    header("Expires: 0");
+    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Cache-Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -92,32 +103,7 @@
             $(document).ready(function(){                                
                 showItems();
                 updateCartIndicator();
-            }); 
-            function showItems() {
-                //Note that $ is short for "jQuery" function, here we call
-                //ajax function object to perform AJAX request.
-                $.ajax({    
-                    method: "POST",
-                    url: "showItemsCards.php",             
-                    dataType: "html",
-                    data: $("#itemOrderBy").serialize(),
-                    cache: false
-                //Use jQuery done and fail deferred/promise methods called using 
-                //anonymous function callbacks with chaining.
-                }).done(function(data, textStatus, jqXHR) {
-                    console.log("Record retrieval status: " + textStatus);
-                    //Uncomment to see raw HTML returned
-                    //console.log(data);
-                    //console.log(jqXHR.responseText);
-                    //Insert html into tableContainer div
-                    $("#items").html(data);
-                }).fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log("Record retrieval status: " + textStatus);
-                    console.log("Response text: " + jqXHR.responseText);
-                    console.log("Error thrown: " + errorThrown);
-                    alert(jqXHR.responseText);
-                });
-            }
+            });             
         </script>
     </body>
 </html>
