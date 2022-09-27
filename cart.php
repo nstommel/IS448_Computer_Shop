@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,7 +43,7 @@
             $(document).ready(function(){                                
                 showCart();
                 updateCartIndicator();
-            });            
+            }); 
         </script>
     </body>
 </html>

@@ -61,11 +61,16 @@ if (isset($_SESSION["shoppingCart"])) {
     echo        '<tr>' . 
                     '<td colspan="8"><span class="font-weight-bold">Total Cost: </span>$' . number_format($totalCost, 2, ".", ",") . '</td>' .
                 '</tr>' .
-        '</table>' .
-        '<input type="submit" class="btn btn-primary" id="update" value="Update Cart" /> ' .
-        '<input type="button" class="btn btn-primary" value="Clear Cart" onclick="clearCart()" />' .
-    '</form>';
+            '</table>' .
+            '<input type="submit" class="btn btn-primary" id="update" value="Update Cart" /> ' .
+            '<input type="button" class="btn btn-primary" value="Clear Cart" onclick="clearCart()" /> ' .
+            '<input type="button" class="btn btn-success" value="Place Order" onclick="placeOrder()" />' .
+        '</form>';    
     $db->close();
 } else {
-    echo '<h3 class="mt-2 ml-4">No Items In Cart</h3>';
+    if (isset($_POST["orderPlaced"]) && $_POST["orderPlaced"] == "true") {
+        echo '<h3 class="mt-2 ml-4">Order Placed Successfully!</h3>';
+    } else {
+        echo '<h3 class="mt-2 ml-4">No Items In Cart</h3>';
+    }
 }
