@@ -1,6 +1,6 @@
 <?php
 
-$db = new SQLite3("catalog.db");
+$db = new SQLite3("../database/catalog.db");
 $db->exec("PRAGMA foreign_keys = ON");
 $db->enableExceptions(true);
 //var_dump($_POST);

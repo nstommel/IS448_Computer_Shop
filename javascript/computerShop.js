@@ -4,7 +4,7 @@ function showItems() {
     //ajax function object to perform AJAX request.
     $.ajax({    
         method: "POST",
-        url: "showItemsCards.php",             
+        url: "php-ajax/showItemsCards.php",             
         dataType: "html",
         data: $("#itemOrderBy").serialize(),
         cache: false
@@ -29,7 +29,7 @@ function updateCartIndicator() {
     console.log('updating number of cart items indicator');    
     $.ajax({
         method: "POST",
-        url: "getNumCartItems.php",                    
+        url: "php-ajax/getNumCartItems.php",                    
         dataType: "text",
         cache: false
     //Use jQuery done and fail deferred/promise methods called using 
@@ -51,7 +51,7 @@ function addItemToCart(itemSKU) {
     console.log('item SKU=' + itemSKU);
     $.ajax({    
         method: "POST",
-        url: "addToCart.php",
+        url: "php-ajax/addToCart.php",
         data: "itemSKU=" + itemSKU,
         dataType: "text",
         cache: false    
@@ -73,7 +73,7 @@ function showCart(orderPlaced = false) {
     console.log("retrieving cart contents...\n");    
     $.ajax({    
         method: "POST",
-        url: "showCart.php",             
+        url: "php-ajax/showCart.php",             
         dataType: "html",
         data: "orderPlaced=" + orderPlaced.toString(),
         cache: false            
@@ -104,7 +104,7 @@ function placeOrder() {
     console.log(unescape($("#cartForm").serialize()));
     $.ajax({    
         method: "POST",
-        url: "placeOrder.php",
+        url: "php-ajax/placeOrder.php",
         dataType: "text",
         data: $("#cartForm").serialize() + "&placeOrder=true",
         cache: false    
@@ -116,7 +116,7 @@ function placeOrder() {
         // and retrieving outdated data.
         $.ajax({
             method: "POST",
-            url: "clearCart.php",                    
+            url: "php-ajax/clearCart.php",                    
             dataType: "text",
             cache: false
         }).done(function(data, textStatus, jqXHR) {
@@ -153,7 +153,7 @@ function updateCart() {
     console.log(unescape($("#cartForm").serialize()));
     $.ajax({    
         method: "POST",
-        url: "updateCart.php",
+        url: "php-ajax/updateCart.php",
         dataType: "text",
         data: $("#cartForm").serialize(),
         cache: false    
@@ -182,7 +182,7 @@ function removeItem(itemSKU) {
     $(".removeButton").prop("disabled", true);
     $.ajax({    
         method: "POST",
-        url: "removeFromCart.php",
+        url: "php-ajax/removeFromCart.php",
         data: "itemSKU=" + itemSKU,
         dataType: "text",
         cache: false
@@ -211,7 +211,7 @@ function clearCart() {
     $(".removeButton").prop("disabled", true);
     $.ajax({
         method: "POST",
-        url: "clearCart.php",                    
+        url: "php-ajax/clearCart.php",                    
         dataType: "text",
         cache: false
     }).done(function(data, textStatus, jqXHR) {

@@ -3,7 +3,7 @@ session_start();
 $sku = intval($_POST['itemSKU']);
 //echo $sku;
 
-$db = new SQLite3("catalog.db");
+$db = new SQLite3("../database/catalog.db");
 $db->exec("PRAGMA foreign_keys = ON");
 $db->enableExceptions(true);
 
@@ -21,20 +21,25 @@ try {
     } else {
         $result->reset();
         $row = $result->fetchArray();
-        echo "record found\n";
+        echo "SKU record found in database\n";
         
-        if(isset($_SESSION['shoppingCart'][$sku])) {
-            echo "Item exists in shopping cart, adding 1\n";
-            $_SESSION['shoppingCart'][$sku] += 1;
+        if (isset($_SESSION['shoppingCart']) && isset($_SESSION['shoppingCart'][$sku])) {
+            unset($_SESSION['shoppingCart'][$sku]);
+            echo "Successfully deleted sku from cart\n";
+            if (empty($_SESSION['shoppingCart'])) {
+                unset($_SESSION['shoppingCart']);
+                echo "Shopping cart empty, deleting shopping cart array";
+            }
+            $db->close();
+            exit();
+            
         } else {
-            echo "Adding item to shopping cart\n";
-            $_SESSION['shoppingCart'][$sku] = 1;
+            header("HTTP/1.0 500 Internal Server Error");        
+            echo "Something went wrong, posted SKU is not in cart.";
+            die();
         }
         var_dump($_SESSION["shoppingCart"]);
-        //Uncomment to purge cart contents
-        //unset($_SESSION["shoppingCart"]);
-        $db->close();
-        exit();
+        
     }
 } catch (Exception $e) {
     //Set error header appropriately
