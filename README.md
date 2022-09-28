@@ -4,3 +4,6 @@ Bootstrap and JQuery are also used.
 
 # Project Members
 Nicholas Stommel, Benjamin Roberts, Tibebu Yimer
+
+# Project Pages
+Home page, items page, item details pages, cart page, brand page, about page
