@@ -77,7 +77,7 @@
         <div class="container-fluid float-left" style="margin-top: 75px;">                                    
             <form class="form-inline" id="itemOrderBy" action="javascript:void(0)" onsubmit="showItems()">
                 <div class="form-group mr-2">
-                    <label for="orderByItem">Select order to display items:</label>
+                    <label for="orderByItem">Item Order</label>
                 </div>
                 <div class="form-group mr-2">
                     <select class="form-control" name="orderByItem">
@@ -94,7 +94,7 @@
                     </select>
                 </div>
                 <div class ="form-group">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Refresh Display" />
+                    <input type="submit" class="btn btn-primary" name="submit" value="Refresh" />
                 </div>
             </form>            
         </div>
