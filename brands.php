@@ -10,10 +10,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="javascript/computerShop.js"></script>
         <style>
-/*            #carousel.carousel.slide {
-                width: 50%;
-                max-width: 400px;
-            }*/
+            #carousel.carousel.slide {
+                width: 100%;
+                max-width: 500px;
+            }
+            /* Bootstrap uses white svg icons for carousels, which are invisible with images on a white background.
+               This code adapted from https://stackoverflow.com/questions/49391266/change-bootstrap-4-carousel-control-colors
+               essentially redraws the svg arrow icons in black.*/
+            .carousel-control-prev-icon {
+                background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+            }
+
+            .carousel-control-next-icon {
+                background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+            }
         </style>
     </head>
     <body>
@@ -37,7 +47,7 @@
                         <a class="nav-link" href="about.php">About</a>
                     </li>
                 </ul>
-               // <a class="btn btn-light ml-auto mr-2" href="cart.php">Cart (<span id="numCartItems"></span>)</a>
+                <a class="btn btn-light ml-auto mr-2" href="cart.php">Cart (<span id="numCartItems"></span>)</a>
             </div>
         </nav>
         <div class="container-fluid float-left" style="margin-top: 75px;">
@@ -47,40 +57,42 @@
                    
             <div id="carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner" >
-                  <div class="carousel-item active">
-                    <img src="site-imgs/Dell-Logo.png" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="site-imgs/Lenovo_logo.png" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="site-imgs/HP-Logo.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-item active">
+                        <img src="site-imgs/Dell-Logo.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="site-imgs/Lenovo_logo.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="site-imgs/HP-Logo.jpg" class="d-block w-100" alt="...">
                   </div>
                 </div>
-               <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
+               <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
+                <button class="carousel-control-next" type="button" data-target="#carousel" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
                 </button>
             </div>
-                        <p>Brands<p>  
-                       <p>Dell<p>
-                          </p>Lenovo</p> 
-                         </p>ASUS</p>
-                   </p>HP</p>
-                    
-                 </p>Samsung</p>
-               </p>Apple</p>              
+            <p>Brands<p>  
+            <p>Dell<p>
+            </p>Lenovo</p> 
+            </p>ASUS</p>
+            </p>HP</p>
+            </p>Samsung</p>
+            </p>Apple</p>              
                                      
         </div>
         <script>
-            // Update cart indicator when document has fully loaded.
-           // $(document).ready(function(){                                                
-            //    updateCartIndicator();
-           // });            
+            //Update cart indicator when document has fully loaded.
+            $(document).ready(function(){                                                
+                updateCartIndicator();
+                $('.carousel').carousel({
+                    interval: 2000
+                })
+            });            
         </script>
     </body>
 </html>
