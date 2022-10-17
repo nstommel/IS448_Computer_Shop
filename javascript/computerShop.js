@@ -226,3 +226,8 @@ function clearCart() {
         alert(jqXHR.responseText);
     });
 }
+
+function clearSearchInput() {
+    console.log("Clearing search input box...");
+    $("#searchInput").val("");
+}
