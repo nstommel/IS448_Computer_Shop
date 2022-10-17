@@ -97,7 +97,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." value="" name="searchTerm" id="searchInput"/>
                         <div class="input-group-append">
-                            <button class="btn btn-danger" type="button" id="clear" onclick="clearInput()">X</button>
+                            <button class="btn btn-danger" type="button" id="clear" onclick="clearSearchInput()">X</button>
                         </div>
                     </div>
                 </div>
@@ -108,9 +108,6 @@
         </div>
         <div id="items"></div>
         <script>
-            function clearInput() {
-                $("#searchInput").val("");
-            }
             $(document).ready(function(){                                
                 showItems();
                 updateCartIndicator();
