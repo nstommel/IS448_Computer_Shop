@@ -5,53 +5,76 @@ $db->exec("PRAGMA foreign_keys = ON");
 $db->enableExceptions(true);
 //var_dump($_POST);
 $orderby = $_POST["orderByItem"];
+$searchTerm = '%' . trim($_POST["searchTerm"]) . '%';
 
 try {
-    // Avoid SQL injection by only using the query method on static strings instead of
-    // inserting a PHP variable into the query method.
+    // Avoid SQL injection with ORDER BY using static strings instead of
+    // inserting a PHP variable into the query method. Bind search term value
+    // to avoid another possibility of SQL injection. Note that all results match
+    // the string "%%" using LIKE if searchTerm is empty.
     switch ($orderby) {
         case "skuAsc":
-            $result = $db->query("SELECT * FROM items ORDER BY sku ASC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY sku ASC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "skuDesc":
-            $result = $db->query("SELECT * FROM items ORDER BY sku DESC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY sku DESC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "nameAsc":
-            $result = $db->query("SELECT * FROM items ORDER BY name COLLATE NOCASE ASC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY name COLLATE NOCASE ASC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "nameDesc":
-            $result = $db->query("SELECT * FROM items ORDER BY name COLLATE NOCASE DESC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY name COLLATE NOCASE DESC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "brandAsc":
-            $result = $db->query("SELECT * FROM items ORDER BY brand COLLATE NOCASE ASC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY brand COLLATE NOCASE ASC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "brandDesc":
-            $result = $db->query("SELECT * FROM items ORDER BY brand COLLATE NOCASE DESC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY brand COLLATE NOCASE DESC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "typeAsc":
-            $result = $db->query("SELECT * FROM items ORDER BY type COLLATE NOCASE ASC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY type COLLATE NOCASE ASC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "typeDesc":
-            $result = $db->query("SELECT * FROM items ORDER BY type COLLATE NOCASE DESC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY type COLLATE NOCASE DESC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "costAsc":
-            $result = $db->query("SELECT * FROM items ORDER BY cost ASC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY cost ASC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         case "costDesc":
-            $result = $db->query("SELECT * FROM items ORDER BY cost DESC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY cost DESC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
         // Use default sku order if for some reason incorrect data is posted. This avoids
         // breaking page functionality if incorrect requests are sent.
         default:
-            $result = $db->query("SELECT * FROM items ORDER BY sku ASC");
+            $stmt = $db->prepare("SELECT * FROM items WHERE name LIKE :term UNION SELECT * FROM items WHERE brand LIKE :term ORDER BY sku ASC");
+            $stmt->bindValue(':term', $searchTerm, SQLITE3_TEXT);
+            $result = $stmt->execute();
             break;
     } 
     
     if (!$result->fetchArray()) {
-        header("HTTP/1.0 500 Internal Server Error");
-        echo "No records found.";
+        echo '<div class="container-fluid float-left"><h3 class="mt-4 ml-4">No matching items found.</h3></div>';
         $db->close();
-        die();
     } else {
         $result->reset();
         echo    '<div class="container-fluid float-left">' .
@@ -69,7 +92,7 @@ try {
                                 '<div class="card-text">$' . number_format($row['cost'], 2, ".", ",") . '</div>' .
                                 // Uncomment to show description on card.
                                 //'<div class="card-text">' . htmlspecialchars($row["description"]) . '</div>' .
-                                '<input class="btn btn-secondary mt-2" type="button" value="Add To Cart" onclick="addItemToCart(\'' . $row["sku"] . '\')" />' .                            
+                                '<input class="btn btn-primary mt-2" type="button" value="Add To Cart" onclick="addItemToCart(\'' . $row["sku"] . '\')" />' .                            
                             '</div>' .
                         '</div>' .
                     '</div>';

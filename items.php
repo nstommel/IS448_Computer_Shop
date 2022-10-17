@@ -93,13 +93,24 @@
                         <option value="costDesc">Cost Descending</option>                        
                     </select>
                 </div>
+                <div class="form-group mr-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." value="" name="searchTerm" id="searchInput"/>
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" type="button" id="clear" onclick="clearInput()">X</button>
+                        </div>
+                    </div>
+                </div>
                 <div class ="form-group">
                     <input type="submit" class="btn btn-primary" name="submit" value="Refresh" />
                 </div>
-            </form>            
+            </form>
         </div>
         <div id="items"></div>
-        <script>            
+        <script>
+            function clearInput() {
+                $("#searchInput").val("");
+            }
             $(document).ready(function(){                                
                 showItems();
                 updateCartIndicator();
