@@ -21,6 +21,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="javascript/computerShop.js"></script>
         <style>
+            /* Wrap items in row */
             .container-fluid > .row {
                 display: flex;
                 flex-wrap: wrap;
