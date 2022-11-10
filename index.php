@@ -36,8 +36,39 @@
                 <a class="btn btn-light ml-auto mr-2" href="cart.php">Cart (<span id="numCartItems"></span>)</a>
             </div>
         </nav>
-        <div class="container-fluid float-left" style="margin-top: 75px;">
-            <h3>TODO: Add Content Here</h3>
+        <div class="container-fluid" style="margin-top: 75px;">
+            <h1 class="text-center">Welcome to Quality Computers</h1>
+            <?php 
+                $db = new SQLite3("database/catalog.db");
+                $result = $db->query("SELECT * FROM items WHERE sku = 1");
+                while($row = $result->fetchArray()){
+                    echo 
+                    '<div id="carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="item.php?sku=' . $row['sku'] . '"><img src="item-imgs/' . $row["sku"] . '.jpg" class="img-fluid mb-sm-5" style="display: block; margin: auto; width: 40%" alt="..."></a>
+                                <div class="carousel-caption" style="color:black;"><h4>' . $row["brand"] . ' ' . $row["name"] . '</h4></div>
+                            </div>';
+                }
+                $result = $db->query("SELECT * FROM items WHERE sku != 1 ORDER BY sku ASC");
+                while($row = $result->fetchArray()){
+                    echo '
+                            <div class="carousel-item">
+                                <a href="item.php?sku=' . $row['sku'] . '"><img src="item-imgs/' . $row["sku"] . '.jpg" class="img-fluid mb-sm-5" style="display: block; margin: auto; width: 40%;" alt="..."></a>
+                                <div class="carousel-caption" style="color:black;"><h4>' . $row["brand"] . ' ' . $row["name"] . '</h4></div>
+                            </div>';      
+                }
+                echo '  </div>
+                        <button class="carousel-control-prev" type="button" data-target="#carousel" style="background-color:black;" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-target="#carousel" style="background-color:black;" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </button>
+                    </div>'; 
+            ?>
         </div>
         <script>
             // Update cart indicator when document has fully loaded.
