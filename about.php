@@ -37,18 +37,21 @@
             </div>
         </nav>
         <div class="container-fluid float-left" style="margin-top: 75px;">
-            <h3><em>Computer Shop<em></h3>            
-                 <img src="site-imgs/computer_store.jpg" class="rounded float-right mr-4" alt="...">     
-            <p><em>Our store has many laptops available for our customer<em><p>
-            <p>We have customer service available 24/7 our cell phone number is +18007986474<p>
-          
-            <h4>Shopping Help</h4><!-- comment -->
-            <p>when shopping add the laptop you want to the cart,and process the purchase</p><!-- comment -->
-            <p>If you want to change or update your cart, just remove existing items and add new items</p>
-            <p>you can pay with credit, debit cards and also a paypal.</p>
-                                        
-        </div>
-        
+            <h2><em>Computer Shop</em></h2>            
+             <img src="site-imgs/computer_store.jpg" class="rounded float-right mr-4" alt="...">     
+             <p><em>Our store has many laptops available for our customer</em></p>       
+             <h3>Help Center</h3><!-- comment -->
+             <p>Imagine having the best team here to help.</p>
+             <p>Want to talk our customer service? 
+             <p>If you want to change or update your order?</p>
+             <p>give us a call 18007986474</p>
+             <h5>store hours</h5><!-- comment -->
+             <p>To make shopping flexible and fun we are open 24 hours and 7 days a week</p><!-- comment -->
+             <h5>Payments</h5>
+             <p>we accept credit card, Visa, Master card and gift card</p>
+             <P>Also, we accept debit cards and PayPal.</p>
+             <img src="site-imgs/computer-logo.png" class="rounded float-right mr-4" alt="...">                           
+        </div>        
         <script>
             // Update cart indicator when document has fully loaded.
             $(document).ready(function(){                                                
