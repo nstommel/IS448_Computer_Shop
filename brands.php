@@ -10,7 +10,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="javascript/computerShop.js"></script>
         <style>
-            #carousel.carousel.slide {
+            .carousel {
+                margin: 0 auto;
+            }
+            .carousel.slide {
                 width: 100%;
                 max-width: 500px;
             }
@@ -50,27 +53,27 @@
                 <a class="btn btn-light ml-auto mr-2" href="cart.php">Cart (<span id="numCartItems"></span>)</a>
             </div>
         </nav>
-        <div class="container-fluid float-left" style="margin-top: 75px;">
-            <h3><em>Computer Brands<em></h3>          
-              
-            <p><em>Our store has many laptops available for our customers<em><p>
-                   
+        <div class="container-fluid float-center" style="margin-top: 75px;">
+            <div class="text-center">
+                <h1>Computer Brands</h1>     
+                <p><em>Our store has many laptops available for our customers</em></p>
+            </div>       
             <div id="carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner" >
                     <div class="carousel-item active">
-                        <img src="site-imgs/Dell-Logo.png" class="d-block w-100" alt="...">
+                        <img src="site-imgs/Dell-Logo.png" class="d-block w-100" alt="Dell-Logo">
                     </div>
                     <div class="carousel-item">
-                        <img src="site-imgs/Lenovo_logo.png" class="d-block w-100" alt="...">
+                        <img src="site-imgs/Lenovo_logo.png" class="d-block w-100" alt="Lenovo_logo">
                     </div>
                     <div class="carousel-item">
-                        <img src="site-imgs/HP-Logo.jpg" class="d-block w-100" alt="...">
+                        <img src="site-imgs/HP-Logo.jpg" class="d-block w-100" alt="HP-Logo">
                   </div>
                     <div class="carousel-item">
-                        <img src="site-imgs/Asus_logo.png" class="d-block w-100" alt="...">
+                        <img src="site-imgs/Asus_logo.png" class="d-block w-100" alt="Asus_logo">
                     </div>
                     <div class="carousel-item">
-                        <img src="site-imgs/Apple_logo.png" class="d-block w-100" alt="...">
+                        <img src="site-imgs/Apple_logo.png" class="d-block w-100" alt="Apple_logo">
                     </div>                    
                 </div>
                <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev">
@@ -82,20 +85,24 @@
                     <span class="sr-only">Next</span>
                 </button>
             </div>
-            <h3>Product Information</h3>
-            <h4>Brands</h4>  
-            <h5>Dell</h5>
-            <p>Laptop Computers & 2-in-1 PCs and they can be customised according to your needs and preferences</p>
-            <h5>Lenovo</h5> 
-            <p>The best Unbeatable keyboard and Solid productivity performance and battery life</p>
-            <h5>ASUS</h5>
-            <p>The best laptops for unrivalled mobility, featuring lightweight, and toughness</p>
-            <h5>HP</h5>
-            <p>Hp provides fast, powerful, and easier for consumers to adopt for their personal projects.</p>
-            <h5>Samsung</h5>
-            <p>Samsung is powerful, offer sufficient battery life, and has an extra oomph that other laptop brands don't over</p>
-            <h5>Apple</h5>              
-            <p>supercharged by M1 and M2 chips and MacBook is user-friendly</p> 
+            <br />
+            <br />
+            <div class="text-center">
+                <h3>Product Information</h3>
+                <h4>Brands</h4>  
+                <h5>Dell</h5>
+                <p>Laptop Computers & 2-in-1 PCs and they can be customised according to your needs and preferences.</p>
+                <h5>Lenovo</h5> 
+                <p>The best Unbeatable keyboard and Solid productivity performance and battery life.</p>
+                <h5>ASUS</h5>
+                <p>The best laptops for unrivalled mobility, featuring lightweight, and toughness.</p>
+                <h5>HP</h5>
+                <p>Hp provides fast, powerful, and easier for consumers to adopt for their personal projects.</p>
+                <h5>Samsung</h5>
+                <p>Samsung is powerful, offer sufficient battery life, and has an extra oomph that other laptop brands don't over.</p>
+                <h5>Apple</h5>              
+                <p>Supercharged by M1 and M2 chips and MacBook is user-friendly.</p> 
+            </div>
         </div>
         <script>
             //Update cart indicator when document has fully loaded.
@@ -103,7 +110,7 @@
                 updateCartIndicator();
                 $('.carousel').carousel({
                     interval: 2000
-                })
+                });
             });            
         </script>
     </body>
