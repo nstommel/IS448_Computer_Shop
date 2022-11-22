@@ -57,6 +57,7 @@
                 <p>We offer stellar in-store and phone service.</p>
                 <p>
                     Want to chat with a customer service representative?
+                    <br />
                     To change & update your order, get purchasing advice, or return a product,
                     <br />
                     Give us a call at <strong>1-800-798-6474</strong>
@@ -64,14 +65,21 @@
                     or email us at <strong>qualitycomputers@gmail.com</strong>
                 </p>
                 <h4><em>Store hours</em></h4>
-                <p>To make shopping flexible and fun our online store is open 24/7.</p>
-                <p>Our retail location is open Monday-Friday from 9:00AM to 8:00PM.</p>
-                <p>(Excluding holidays)</p>
+                <p>
+                    To make shopping flexible and fun our online store is open 24/7.
+                    <br />
+                    Our retail location is open Monday-Friday from 9:00AM to 8:00PM.
+                    <br />
+                    (Excluding holidays)
+                </p>
                 <h4><em>Payments</em></h4>
                 <img src="site-imgs/Payment-Icons.png" class="rounded" alt="Payment Options" width="300" />
                 <br /><br />
-                <p>We accept Visa, MasterCard, American Express & Discover.</p>
-                <P>PayPal Checkout is also supported.</p>
+                <p>
+                    We accept Visa, MasterCard, American Express & Discover.
+                    <br />
+                    PayPal Checkout is also supported.
+                </p>
                 <h4><em>Store Location</em></h4>
                 <p>9092 Snowden River Pkwy, Columbia, MD 21046</p>
                 <img src="site-imgs/Map.png" class="rounded" alt="Store Location Map" width="600" />
