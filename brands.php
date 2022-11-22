@@ -1,3 +1,8 @@
+<?php 
+    $db = new SQLite3("database/catalog.db");
+    $db->exec("PRAGMA foreign_keys = ON");
+    $db->enableExceptions(true);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,10 +17,11 @@
         <style>
             .carousel {
                 margin: 0 auto;
+                width: 650px;
+                height: 300px;
             }
-            .carousel.slide {
-                width: 100%;
-                max-width: 500px;
+            .carousel-item img {
+                height: 300px;
             }
             /* Bootstrap uses white svg icons for carousels, which are invisible with images on a white background.
                This code adapted from https://stackoverflow.com/questions/49391266/change-bootstrap-4-carousel-control-colors
@@ -23,15 +29,21 @@
             .carousel-control-prev-icon {
                 background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
             }
-
             .carousel-control-next-icon {
                 background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2300000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+            }
+            .card .card-header {
+                background-color: #343a40;
+                color: white;
             }
         </style>
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand font-weight-bold" href="">Quality Computers</a>
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand font-weight-bold" href="index.php">
+                <img src="site-imgs/Logo-Navbar.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Quality Computers
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,53 +67,83 @@
         </nav>
         <div class="container-fluid float-center" style="margin-top: 75px;">
             <div class="text-center">
-                <h1>Computer Brands</h1>     
-                <p><em>Our store has many laptops available for our customers</em></p>
-            </div>       
-            <div id="carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner" >
-                    <div class="carousel-item active">
-                        <img src="site-imgs/Dell-Logo.png" class="d-block w-100" alt="Dell-Logo">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="site-imgs/Lenovo_logo.png" class="d-block w-100" alt="Lenovo_logo">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="site-imgs/HP-Logo.jpg" class="d-block w-100" alt="HP-Logo">
-                  </div>
-                    <div class="carousel-item">
-                        <img src="site-imgs/Asus_logo.png" class="d-block w-100" alt="Asus_logo">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="site-imgs/Apple_logo.png" class="d-block w-100" alt="Apple_logo">
-                    </div>                    
-                </div>
-               <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-target="#carousel" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </button>
+                <h2><u>Computer Brands</u></h2>     
+                <p>
+                    <em>Our online & retail stores have many laptops & desktops available for our customers.</em>
+                    <br />
+                    <em>Check out our brands below:</em>
+                </p>
             </div>
-            <br />
-            <br />
-            <div class="text-center">
-                <h3>Product Information</h3>
-                <h4>Brands</h4>  
-                <h5>Dell</h5>
-                <p>Laptop Computers & 2-in-1 PCs and they can be customised according to your needs and preferences.</p>
-                <h5>Lenovo</h5> 
-                <p>The best Unbeatable keyboard and Solid productivity performance and battery life.</p>
-                <h5>ASUS</h5>
-                <p>The best laptops for unrivalled mobility, featuring lightweight, and toughness.</p>
-                <h5>HP</h5>
-                <p>Hp provides fast, powerful, and easier for consumers to adopt for their personal projects.</p>
-                <h5>Samsung</h5>
-                <p>Samsung is powerful, offer sufficient battery life, and has an extra oomph that other laptop brands don't over.</p>
-                <h5>Apple</h5>              
-                <p>Supercharged by M1 and M2 chips and MacBook is user-friendly.</p> 
+            <?php 
+                try {
+                    echo '<div class="container-fluid">';
+                    // Fetch first item from the first 10 items in the database and set the carousel-item to active. 
+                    $result = $db->query("SELECT * FROM brands ORDER BY brand");
+                    $row = $result->fetchArray();
+                    echo    '<div id="carousel" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="parent d-flex justify-content-center">
+                                            <img src="site-imgs/' . $row['brand'] . '-Logo.png" alt="' . $row['brand'] . ' Logo">
+                                        </div>
+                                    </div>';
+                    // Fetch remaining 9 items out of 10 selected from all items in database and add to carousel.
+                    while($row = $result->fetchArray()){
+                        echo        '<div class="carousel-item">
+                                        <div class="parent d-flex justify-content-center">
+                                            <img src="site-imgs/' . $row['brand'] . '-Logo.png" alt="' . $row['brand'] . ' Logo">
+                                        </div>
+                                    </div>';      
+                    }
+                    echo        '</div>
+                                <button class="carousel-control-prev" type="button" data-target="#carousel" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-target="#carousel" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </button>
+                            </div>
+                        <div>';
+                } catch (Exception $e) {
+                    //Set error header appropriately
+                    header("HTTP/1.0 500 Internal Server Error");        
+                    echo "Database error: " . $e->getMessage();
+                    $db->close();
+                    die();
+                }
+            ?>
+            <div class="text-center mb-4">
+                <h2><u>Product Information</u></h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <?php
+                        try {
+                        echo '<div class="container-fluid">';
+                        // Fetch first item from the first 10 items in the database and set the carousel-item to active. 
+                        $result = $db->query("SELECT * FROM brands ORDER BY brand");
+                        while($row = $result->fetchArray()){
+                            echo '<div class="card mb-2">
+                                    <div class="card-header h4 text-center">' . $row['brand'] . '</div>
+                                    <div class="card-body text-center">
+                                        <p>' . $row['description'] . '</p>
+                                    </div>
+                                </div>';
+                        }
+                        echo '</div>';
+                    } catch (Exception $e) {
+                        //Set error header appropriately
+                        header("HTTP/1.0 500 Internal Server Error");        
+                        echo "Database error: " . $e->getMessage();
+                        $db->close();
+                        die();
+                    }
+                ?>
+                </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
         <script>

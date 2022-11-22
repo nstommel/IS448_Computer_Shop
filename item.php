@@ -24,8 +24,11 @@
         </style>
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand font-weight-bold" href="">Quality Computers</a>
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand font-weight-bold" href="index.php">
+                <img src="site-imgs/Logo-Navbar.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Quality Computers
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,18 +57,27 @@
                 $result = $db->query("SELECT * FROM items WHERE sku = " . $getSKU);
                 
                 while($row = $result->fetchArray()){
-                echo '<h1 class="text-center">' . $row['brand'] . " " . $row['name'] . '</h1><hr>' .
-                     '<div class="row">' .
-                        '<div class="col-sm-5">' .
-                            '<div>' .
-                                '<img class="border-right img-fluid" style="padding-right: 20px" src="item-imgs/' . $getSKU . '.jpg" alt="Card image cap">' .
-                            '</div>' .
-                        '</div>' .
-                        '<div class="col-sm-7 p-sm-5 my-sm-5">' . 
-                            '<h3 class="text-center">' . $row["description"] . '</h3>' .
-                            '<h3 class="text-center">$' . number_format($row['cost'], 2, ".", ",") . '</h3>' .
-                            '<input class="btn-block btn-primary rounded mt-2" type="button" value="Add To Cart" style="font-size:2em" onclick="addItemToCart(\'' . $row["sku"] . '\')" />' .
-                        '</div>' .
+                echo '<div class="container-fluid">' .
+                        '<h1 class="text-center">' . $row['brand'] . " " . $row['name'] . '</h1><hr>' .
+                        '<div class="row">' .
+                           '<div class="col-lg-5">' .
+                               '<div>' .
+                                   '<img class="border-right img-fluid" style="padding-right: 20px" src="item-imgs/' . $getSKU . '.jpg" alt="Card image cap">' .
+                               '</div>' .
+                           '</div>' .
+                           '<div class="col-lg-7 p-lg-5 my-lg-5">' . 
+                               '<h2 class="text-center"><u>Description</u></h2><br />' .
+                               '<h5>' . $row["description"] . '</h5><br />' .
+                               '<h2 class="text-center">Price: $' . number_format($row['cost'], 2, ".", ",") . '</h2>' .
+                               '<div class="row">' .
+                                   '<div class="col-md-3"></div>' .
+                                   '<div class="col-md-6">' .
+                                       '<input class="btn btn-block btn-primary btn-lg mt-2" type="button" value="Add To Cart" onclick="addItemToCart(\'' . $row["sku"] . '\')" />' .
+                                   '</div>' .
+                                   '<div class="col-md-3"></div>' .
+                               '</div>' .
+                           '</div>' .
+                       '</div>' .
                     '</div>';
                 }
             ?>
