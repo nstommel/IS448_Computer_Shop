@@ -77,7 +77,7 @@
             <?php 
                 try {
                     echo '<div class="container-fluid">';
-                    // Fetch first item from the first 10 items in the database and set the carousel-item to active. 
+                    // Fetch first item in the database and set the carousel-item to active. 
                     $result = $db->query("SELECT * FROM brands ORDER BY brand");
                     $row = $result->fetchArray();
                     echo    '<div id="carousel" class="carousel slide" data-ride="carousel">
@@ -87,7 +87,7 @@
                                             <img src="site-imgs/' . $row['brand'] . '-Logo.png" alt="' . $row['brand'] . ' Logo">
                                         </div>
                                     </div>';
-                    // Fetch remaining 9 items out of 10 selected from all items in database and add to carousel.
+                    // Fetch remaining items in database and add to carousel.
                     while($row = $result->fetchArray()){
                         echo        '<div class="carousel-item">
                                         <div class="parent d-flex justify-content-center">
@@ -123,7 +123,7 @@
                     <?php
                         try {
                         echo '<div class="container-fluid">';
-                        // Fetch first item from the first 10 items in the database and set the carousel-item to active. 
+                        // Fetch all brands with their description and display cards. 
                         $result = $db->query("SELECT * FROM brands ORDER BY brand");
                         while($row = $result->fetchArray()){
                             echo '<div class="card mb-2">
