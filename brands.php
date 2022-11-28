@@ -7,8 +7,8 @@
 <html>
     <head>
         <title></title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <!--Include Bootstrap 4 CSS and JS with jQuery Ajax-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -83,14 +83,14 @@
                     echo    '<div id="carousel" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <div class="parent d-flex justify-content-center">
+                                        <div class="d-flex justify-content-center">
                                             <img src="site-imgs/' . $row['brand'] . '-Logo.png" alt="' . $row['brand'] . ' Logo">
                                         </div>
                                     </div>';
                     // Fetch remaining items in database and add to carousel.
                     while($row = $result->fetchArray()){
                         echo        '<div class="carousel-item">
-                                        <div class="parent d-flex justify-content-center">
+                                        <div class="d-flex justify-content-center">
                                             <img src="site-imgs/' . $row['brand'] . '-Logo.png" alt="' . $row['brand'] . ' Logo">
                                         </div>
                                     </div>';      
@@ -120,9 +120,9 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <?php
-                        try {
-                        echo '<div class="container-fluid">';
+                <?php
+                    try {
+                        echo '<div class="container-fluid mb-4">';
                         // Fetch all brands with their description and display cards. 
                         $result = $db->query("SELECT * FROM brands ORDER BY brand");
                         while($row = $result->fetchArray()){
